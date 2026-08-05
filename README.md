@@ -2,54 +2,6 @@
 
 A curated survey of **training-free acceleration methods for video generation**, with an emphasis on video diffusion transformers (video DiTs), inference-time reuse, sparse computation, feature approximation, and token or resolution reduction.
 
-Last updated: 2026-08-05
-
-## Scope
-
-This project tracks methods that accelerate video generation without retraining or fine-tuning the base video generation model. A method is in scope when its main speedup comes from inference-time changes such as reusing intermediate computation, selecting sparse token interactions, approximating feature evolution, reducing token or latent resolution, or improving the execution path of an otherwise unchanged generator.
-
-The scope is intentionally narrow. General video generation papers, architecture redesigns, distillation methods, quantization-only methods, and training-based compression methods are outside the core scope unless they also introduce a clearly separable training-free inference acceleration mechanism.
-
-## Positioning
-
-Existing efficient-video-generation lists are useful but broad: they often mix training-time methods, distillation, architecture design, deployment systems, and inference tricks. This repository is narrower: it treats training-free video-generation acceleration as its own slice and classifies each paper by stable method axes rather than by a changing set of paper batches.
-
-Related resources and differences are summarized in [docs/related-resources.md](docs/related-resources.md).
-
-## Method Axes
-
-The taxonomy is organized as reusable axes. New papers can be added to the table without rewriting the surrounding survey structure. The same axis definitions are kept in [data/taxonomy.yaml](data/taxonomy.yaml) for later expansion.
-
-### Acceleration Target
-
-| Target | What is reduced | Typical examples |
-|---|---|---|
-| Denoising step path | Repeated computation across adjacent or selected timesteps | attention output broadcast, residual caching, step-adaptive cache |
-| Attention computation | Dense spatio-temporal token interactions | head routing, block-sparse attention, token grouping |
-| Feature evolution | Expensive exact feature recomputation | feature reuse, feature forecasting, solver-style approximation |
-| Token or resolution budget | Number of tokens processed in selected stages | low-resolution intermediate sampling, token carving |
-| Guidance or branch path | Duplicate conditional/unconditional computation | CFG branch reuse or cache |
-| Execution path | Latency hidden behind memory layout, kernels, or communication | hardware-friendly layouts, custom kernels, distributed broadcast |
-
-### Mechanism Family
-
-| Family | Core idea | Typical risk |
-|---|---|---|
-| Cache / reuse | Reuse previously computed activations or outputs. | stale features may weaken motion or fine details |
-| Sparse / select | Compute only important token, block, head, or branch interactions. | sparse pattern search may miss prompt-specific dependencies |
-| Forecast / approximate | Predict or approximate future features instead of recomputing them exactly. | approximation error may accumulate across steps |
-| Progressive budget | Change resolution or token budget during selected denoising stages. | detail recovery depends on when full resolution returns |
-| Hybrid pipeline | Combine multiple acceleration levers. | interactions between levers may be model- or prompt-sensitive |
-
-### Decision Signal
-
-| Signal | What it uses | Example use |
-|---|---|---|
-| Fixed schedule | Hand-designed or profiled timestep ranges | broadcast or cache intervals |
-| Runtime activation signal | Input, residual, magnitude, or feature change | adaptive cache trigger |
-| Attention structure | QK scores, head behavior, block importance, token grouping | sparse attention pattern |
-| Semantic or spatial structure | token position, semantic grouping, frame layout | token permutation or carving |
-| Solver trajectory | historical feature trajectory across timesteps | feature forecasting |
 
 ## Papers
 
