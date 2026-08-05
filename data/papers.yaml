@@ -1,0 +1,131 @@
+papers:
+  - id: pab
+    order: 1
+    title: "Real-Time Video Generation with Pyramid Attention Broadcast"
+    method: "PAB"
+    year: 2024
+    arxiv: "2408.12588"
+    family: "caching / attention broadcast"
+    mechanism: "Broadcast spatial, temporal, and cross-attention outputs across selected denoising steps."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2408.12588"
+      code: "https://github.com/NUS-HPC-AI-Lab/VideoSys"
+
+  - id: fastercache
+    order: 2
+    title: "FasterCache: Training-Free Video Diffusion Model Acceleration with High Quality"
+    method: "FasterCache"
+    year: 2024
+    arxiv: "2410.19355"
+    family: "feature reuse / CFG cache"
+    mechanism: "Reuse features across denoising steps and exploit CFG conditional/unconditional branch redundancy."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2410.19355"
+      code: "https://github.com/Vchitect/FasterCache"
+
+  - id: teacache
+    order: 3
+    title: "Timestep Embedding Tells: It's Time to Cache for Video Diffusion Model"
+    method: "TeaCache"
+    year: 2024
+    arxiv: "2411.19108"
+    family: "adaptive caching"
+    mechanism: "Use timestep-embedding-modulated input differences as a low-cost cache decision signal."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2411.19108"
+      code: "https://github.com/ali-vilab/TeaCache"
+
+  - id: sparse-videogen
+    order: 4
+    title: "Sparse VideoGen: Accelerating Video Diffusion Transformers with Spatial-Temporal Sparsity"
+    method: "Sparse VideoGen"
+    year: 2025
+    arxiv: "2502.01776"
+    family: "sparse attention"
+    mechanism: "Classify attention heads into spatial or temporal sparse patterns and compute selected interactions."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2502.01776"
+      code: "https://github.com/svg-project/Sparse-VideoGen"
+
+  - id: adaspa
+    order: 5
+    title: "Training-free and Adaptive Sparse Attention for Efficient Long Video Generation"
+    method: "AdaSpa"
+    year: 2025
+    arxiv: "2502.21079"
+    family: "adaptive sparse attention"
+    mechanism: "Use dynamic block patterns, online precise search, LSE caching, and head-adaptive sparsity."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2502.21079"
+      cvf: "https://openaccess.thecvf.com/content/ICCV2025/html/Xia_Training-free_and_Adaptive_Sparse_Attention_for_Efficient_Long_Video_Generation_ICCV_2025_paper.html"
+
+  - id: taylorseer
+    order: 6
+    title: "From Reusing to Forecasting: Accelerating Diffusion Models with TaylorSeers"
+    method: "TaylorSeer"
+    year: 2025
+    arxiv: "2503.06923"
+    family: "feature forecasting"
+    mechanism: "Forecast future diffusion features from previous feature trajectories using Taylor-style extrapolation."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2503.06923"
+      code: "https://github.com/Shenyi-Z/TaylorSeer"
+
+  - id: xattention
+    order: 7
+    title: "XAttention: Block Sparse Attention with Antidiagonal Scoring"
+    method: "XAttention"
+    year: 2025
+    arxiv: "2503.16428"
+    family: "block-sparse attention"
+    mechanism: "Use antidiagonal scoring as a lightweight block-importance proxy for sparse attention."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2503.16428"
+      code: "https://github.com/mit-han-lab/x-attention"
+
+  - id: bottleneck-sampling
+    order: 8
+    title: "Training-free Diffusion Acceleration with Bottleneck Sampling"
+    method: "Bottleneck Sampling"
+    year: 2025
+    arxiv: "2503.18940"
+    family: "progressive resolution"
+    mechanism: "Use high-low-high denoising to reduce intermediate self-attention resolution while preserving final fidelity."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2503.18940"
+      code: "https://github.com/tyfeld/Bottleneck-Sampling"
+
+  - id: grat
+    order: 9
+    title: "Grouping First, Attending Smartly: Training-Free Acceleration for Diffusion Transformers"
+    method: "GRAT"
+    year: 2025
+    arxiv: "2505.14687"
+    family: "hardware-aware sparse attention"
+    mechanism: "Group tokens before sparse attention to improve locality and hardware efficiency."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2505.14687"
+      code: "https://github.com/OliverRensu/GRAT"
+      project: "https://oliverrensu.github.io/project/GRAT/"
+
+  - id: jenga
+    order: 10
+    title: "Training-Free Efficient Video Generation via Dynamic Token Carving"
+    method: "Jenga"
+    year: 2025
+    arxiv: "2505.16864"
+    family: "sparse attention / progressive resolution"
+    mechanism: "Combine dynamic token carving with progressive-resolution generation."
+    training_free: true
+    links:
+      paper: "https://arxiv.org/abs/2505.16864"
+      code: "https://github.com/JIA-Lab-research/Jenga"
