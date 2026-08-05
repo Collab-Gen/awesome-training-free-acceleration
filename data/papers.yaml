@@ -5,7 +5,10 @@ papers:
     method: "PAB"
     year: 2024
     arxiv: "2408.12588"
-    family: "caching / attention broadcast"
+    family: "Cache / reuse"
+    acceleration_target: ["attention_computation", "denoising_step_path", "execution_path"]
+    mechanism_family: ["cache_reuse"]
+    decision_signal: ["fixed_schedule"]
     mechanism: "Broadcast spatial, temporal, and cross-attention outputs across selected denoising steps."
     training_free: true
     links:
@@ -18,7 +21,10 @@ papers:
     method: "FasterCache"
     year: 2024
     arxiv: "2410.19355"
-    family: "feature reuse / CFG cache"
+    family: "Cache / reuse"
+    acceleration_target: ["feature_evolution", "guidance_or_branch_path"]
+    mechanism_family: ["cache_reuse"]
+    decision_signal: ["runtime_activation"]
     mechanism: "Reuse features across denoising steps and exploit CFG conditional/unconditional branch redundancy."
     training_free: true
     links:
@@ -31,7 +37,10 @@ papers:
     method: "TeaCache"
     year: 2024
     arxiv: "2411.19108"
-    family: "adaptive caching"
+    family: "Cache / reuse"
+    acceleration_target: ["feature_evolution", "denoising_step_path"]
+    mechanism_family: ["cache_reuse"]
+    decision_signal: ["runtime_activation"]
     mechanism: "Use timestep-embedding-modulated input differences as a low-cost cache decision signal."
     training_free: true
     links:
@@ -44,7 +53,10 @@ papers:
     method: "Sparse VideoGen"
     year: 2025
     arxiv: "2502.01776"
-    family: "sparse attention"
+    family: "Sparse / select"
+    acceleration_target: ["attention_computation", "execution_path"]
+    mechanism_family: ["sparse_select"]
+    decision_signal: ["attention_structure"]
     mechanism: "Classify attention heads into spatial or temporal sparse patterns and compute selected interactions."
     training_free: true
     links:
@@ -57,7 +69,10 @@ papers:
     method: "AdaSpa"
     year: 2025
     arxiv: "2502.21079"
-    family: "adaptive sparse attention"
+    family: "Sparse / select"
+    acceleration_target: ["attention_computation", "execution_path"]
+    mechanism_family: ["sparse_select"]
+    decision_signal: ["attention_structure", "runtime_activation"]
     mechanism: "Use dynamic block patterns, online precise search, LSE caching, and head-adaptive sparsity."
     training_free: true
     links:
@@ -70,7 +85,10 @@ papers:
     method: "TaylorSeer"
     year: 2025
     arxiv: "2503.06923"
-    family: "feature forecasting"
+    family: "Forecast / approximate"
+    acceleration_target: ["feature_evolution"]
+    mechanism_family: ["forecast_approximate"]
+    decision_signal: ["solver_trajectory"]
     mechanism: "Forecast future diffusion features from previous feature trajectories using Taylor-style extrapolation."
     training_free: true
     links:
@@ -83,7 +101,10 @@ papers:
     method: "XAttention"
     year: 2025
     arxiv: "2503.16428"
-    family: "block-sparse attention"
+    family: "Sparse / select"
+    acceleration_target: ["attention_computation"]
+    mechanism_family: ["sparse_select"]
+    decision_signal: ["attention_structure"]
     mechanism: "Use antidiagonal scoring as a lightweight block-importance proxy for sparse attention."
     training_free: true
     links:
@@ -96,7 +117,10 @@ papers:
     method: "Bottleneck Sampling"
     year: 2025
     arxiv: "2503.18940"
-    family: "progressive resolution"
+    family: "Progressive budget"
+    acceleration_target: ["token_or_resolution_budget"]
+    mechanism_family: ["progressive_budget"]
+    decision_signal: ["fixed_schedule"]
     mechanism: "Use high-low-high denoising to reduce intermediate self-attention resolution while preserving final fidelity."
     training_free: true
     links:
@@ -109,7 +133,10 @@ papers:
     method: "GRAT"
     year: 2025
     arxiv: "2505.14687"
-    family: "hardware-aware sparse attention"
+    family: "Sparse / select"
+    acceleration_target: ["attention_computation", "execution_path"]
+    mechanism_family: ["sparse_select"]
+    decision_signal: ["attention_structure", "semantic_or_spatial"]
     mechanism: "Group tokens before sparse attention to improve locality and hardware efficiency."
     training_free: true
     links:
@@ -123,7 +150,10 @@ papers:
     method: "Jenga"
     year: 2025
     arxiv: "2505.16864"
-    family: "sparse attention / progressive resolution"
+    family: "Hybrid pipeline"
+    acceleration_target: ["attention_computation", "token_or_resolution_budget"]
+    mechanism_family: ["sparse_select", "progressive_budget", "hybrid_pipeline"]
+    decision_signal: ["semantic_or_spatial", "fixed_schedule"]
     mechanism: "Combine dynamic token carving with progressive-resolution generation."
     training_free: true
     links:

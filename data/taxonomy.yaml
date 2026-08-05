@@ -1,0 +1,60 @@
+axes:
+  acceleration_target:
+    description: "Where the method reduces computation in the video generation inference pipeline."
+    values:
+      denoising_step_path:
+        label: "Denoising step path"
+        reduced_cost: "Repeated computation across adjacent or selected timesteps"
+      attention_computation:
+        label: "Attention computation"
+        reduced_cost: "Dense spatio-temporal token interactions"
+      feature_evolution:
+        label: "Feature evolution"
+        reduced_cost: "Exact feature recomputation across diffusion steps"
+      token_or_resolution_budget:
+        label: "Token or resolution budget"
+        reduced_cost: "Number of tokens processed in selected stages"
+      guidance_or_branch_path:
+        label: "Guidance or branch path"
+        reduced_cost: "Duplicate conditional/unconditional guidance computation"
+      execution_path:
+        label: "Execution path"
+        reduced_cost: "Latency from layout, kernels, memory access, or communication"
+
+  mechanism_family:
+    description: "How the method produces inference-time savings."
+    values:
+      cache_reuse:
+        label: "Cache / reuse"
+        core_idea: "Reuse previously computed activations or outputs."
+      sparse_select:
+        label: "Sparse / select"
+        core_idea: "Compute only selected token, block, head, or branch interactions."
+      forecast_approximate:
+        label: "Forecast / approximate"
+        core_idea: "Predict or approximate features instead of recomputing them exactly."
+      progressive_budget:
+        label: "Progressive budget"
+        core_idea: "Change resolution or token budget during selected denoising stages."
+      hybrid_pipeline:
+        label: "Hybrid pipeline"
+        core_idea: "Combine multiple acceleration levers."
+
+  decision_signal:
+    description: "What information the method uses to decide when or where to save computation."
+    values:
+      fixed_schedule:
+        label: "Fixed schedule"
+        signal: "Hand-designed or profiled timestep ranges"
+      runtime_activation:
+        label: "Runtime activation signal"
+        signal: "Input, residual, magnitude, or feature change"
+      attention_structure:
+        label: "Attention structure"
+        signal: "QK scores, head behavior, block importance, or token grouping"
+      semantic_or_spatial:
+        label: "Semantic or spatial structure"
+        signal: "Token position, semantic grouping, frame layout, or permutation"
+      solver_trajectory:
+        label: "Solver trajectory"
+        signal: "Historical feature trajectory across timesteps"
